@@ -1,0 +1,24 @@
+{
+  "overview": "A full-stack social media platform where users can create profiles, share posts with text and images, follow other users, like and comment on posts, and browse a personalized news feed — all running on the Internet Computer.",
+  "features": [
+    "User profiles with bio and profile picture",
+    "Follow and unfollow other users",
+    "Create, edit, and delete posts with text and optional images",
+    "Like and comment on posts",
+    "Personalized news feed from followed users with pagination",
+    "Explore page showing all posts",
+    "Internet Identity authentication",
+    "Optimistic UI updates for fast interactions"
+  ],
+  "category": "social",
+  "tags": [
+    "social-media",
+    "feed",
+    "posts",
+    "profiles",
+    "follow",
+    "likes",
+    "comments"
+  ],
+  "last_updated": "2026-04-22T09:07:17.140Z"
+}

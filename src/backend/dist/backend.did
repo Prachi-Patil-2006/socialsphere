@@ -1,0 +1,71 @@
+type UserId = principal;
+type User = 
+ record {
+   bio: text;
+   createdAt: Timestamp;
+   followers: vec UserId;
+   following: vec UserId;
+   id: UserId;
+   profilePicture: text;
+   username: text;
+ };
+type Timestamp = int;
+type Result_1 = 
+ variant {
+   err: ApiError;
+   ok: PostId;
+ };
+type Result = 
+ variant {
+   err: ApiError;
+   ok;
+ };
+type PostId = nat;
+type Post = 
+ record {
+   comments: vec Comment;
+   content: text;
+   createdAt: Timestamp;
+   id: PostId;
+   image: opt text;
+   likes: vec UserId;
+   user: UserId;
+ };
+type CommentId = nat;
+type Comment = 
+ record {
+   createdAt: Timestamp;
+   id: CommentId;
+   "text": text;
+   user: UserId;
+ };
+type ApiError = 
+ variant {
+   alreadyExists;
+   invalidInput: text;
+   notFound;
+   selfAction;
+   unauthorized;
+ };
+service : {
+  addComment: (postId: PostId, "text": text) -> (Result);
+  createPost: (content: text, image: opt text) -> (Result_1);
+  deletePost: (postId: PostId) -> (Result);
+  followUser: (target: UserId) -> (Result);
+  getAllUsers: () -> (vec User) query;
+  getExplorePosts: (page: nat, limit: nat) -> (vec Post) query;
+  getFeed: (page: nat, limit: nat) -> (vec Post) query;
+  getFollowers: (userId: UserId) -> (vec User) query;
+  getFollowing: (userId: UserId) -> (vec User) query;
+  getMyProfile: () -> (opt User) query;
+  getPost: (postId: PostId) -> (opt Post) query;
+  getUser: (userId: UserId) -> (opt User) query;
+  getUserProfile: (userId: UserId) -> (opt User) query;
+  likePost: (postId: PostId) -> (Result);
+  registerUser: (username: text, bio: text, profilePicture: text) -> (Result);
+  unfollowUser: (target: UserId) -> (Result);
+  unlikePost: (postId: PostId) -> (Result);
+  updatePost: (postId: PostId, content: text, image: opt text) -> (Result);
+  updateProfile: (username: text, bio: text, profilePicture: text) ->
+   (Result);
+}
